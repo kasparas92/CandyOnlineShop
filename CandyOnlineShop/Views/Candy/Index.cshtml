@@ -1,0 +1,17 @@
+﻿@model CandyListViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<h1>@Model.CurrentCategory</h1>
+@foreach (var candy in Model.Candies)
+{
+    <partial name="_Candy" model="candy" />
+}
+@if (Model.CurrentCategory != "All Candies"  && SignInManager.IsSignedIn(User))
+{
+    <a asp-controller="Candy" asp-action="Add" asp-route-name="@Model.CurrentCategory" style="border: none; padding: 0; background: none;">
+        <svg width="10em" height="10em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+    </a>
+}

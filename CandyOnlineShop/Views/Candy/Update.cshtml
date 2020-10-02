@@ -1,0 +1,10 @@
+﻿@model Candy
+
+<form asp-action="Update" method="Post" class="form-horizontal" role="form">
+    <h4>Update @Model.Name</h4>
+    <partial name="_CandyForm" model="@Model" />
+
+    @Html.HiddenFor(x => x.CategoryId)
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.Category.Name)
+</form>
